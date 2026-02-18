@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-/* Tailwind-first setup for dark portfolio */
 html,
 body,
 #root {
@@ -12,18 +11,26 @@ html {
 }
 
 body {
-  @apply bg-bg text-text antialiased;
   margin: 0;
   min-height: 100vh;
+  background-color: #0a0a0a; /* same as bg */
+  color: #E5E7EB;           /* same as text */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Optional: nicer default selection color */
 ::selection {
-  background: rgba(124, 58, 237, 0.4); /* accent */
+  background: rgba(124, 58, 237, 0.4);
   color: white;
 }
 
-/* Remove ugly blue tap highlight on mobile */
 * {
   -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  --shadow-special:
+    0px 2px 3px -1px rgba(0, 0, 0, 0.4),
+    0px 1px 0px 0px rgba(25, 28, 33, 0.2),
+    0px 0px 0px 1px rgba(25, 28, 33, 0.5);
 }
