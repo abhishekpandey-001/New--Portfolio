@@ -38,13 +38,13 @@ const Navbar = () => {
         y,
       }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className="fixed inset-x-0 top-3 z-50 mx-auto max-w-4xl  rounded-xl
-        flex items-center justify-between px-6 py-2 border border-white/5"
+      className="fixed inset-x-0 top-3 z-50 mx-auto rounded-xl
+        flex items-center justify-between px-1 py-2 border border-white/5"
     >
       {/* Background blur layer */}
       <motion.div
         style={{ opacity: bgOpacity }}
-        className="pointer-events-none absolute inset-0 backdrop-blur-md bg-bg"
+        className="pointer-events-none absolute inset-0 backdrop-blur-md"
       />
 
       {/* Content */}
