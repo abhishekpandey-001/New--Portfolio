@@ -27,7 +27,7 @@ const Navbar = () => {
 
       transition={{
         duration: 0.3,
-        ease: "easeInOut"
+        ease: "linear"
       }}
       className="fixed inset-x-0 top-3 z-50 mx-auto max-w-4xl rounded-xl
         flex items-center justify-between px-6 py-2
