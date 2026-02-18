@@ -5,110 +5,121 @@ import {
   AnimatePresence,
   useTransform,
 } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Navbar = () => {
   const navItems = [
     { title: "About", href: "#about" },
-    { title: "Projects", href: "#projects" },
     { title: "Skills", href: "#skills" },
+    { title: "Projects", href: "#projects" },
     { title: "Contact", href: "#contact" },
   ];
 
   const [hovered, setHovered] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
-
-  const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
+  const { scrollY } = useScroll();
 
   const y = useTransform(scrollY, [0, 100], [0, 10]);
-  const width = useTransform(scrollY, [0, 100], ["50%", "40%"]);
+  const width = useTransform(scrollY, [0, 100], ["55%", "40%"]);
   const bgOpacity = useTransform(scrollY, [0, 100], [0.4, 0.7]);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 20);
-    setMenuOpen(false)
+    setMenuOpen(false);
   });
+
+  // Track window width for mobile/desktop
+  const [isDesktop, setIsDesktop] = useState(true);
+  useEffect(() => {
+    const handleResize = () => setIsDesktop(window.innerWidth >= 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <motion.nav
       style={{
-        boxShadow: scrolled ? "var(--shadow-special)" : "none",
-        width,
         y,
+        width: isDesktop ? width : "100%", // desktop dynamic width, mobile full
       }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className="fixed inset-x-0 top-3 z-50 mx-auto rounded-xl
-        flex items-center justify-between px-1 py-2 border border-white/5"
+      className={`fixed top-5 left-1/2 -translate-x-1/2 z-50 flex items-center justify-between
+                  ${isDesktop ? "px-1" : "px-4"} py-2 rounded-xl border border-white/5`}
     >
-      {/* Background blur layer */}
+      {/* Background blur */}
       <motion.div
         style={{ opacity: bgOpacity }}
         className="pointer-events-none absolute inset-0 backdrop-blur-md"
       />
 
-      {/* Content */}
+      {/* Profile image */}
       <img
-        className="relative z-10 h-8 w-8 rounded-full object-cover"
+        className="relative z-10 h-14 w-14 rounded-full object-cover"
         src="/me.png"
         alt="Profile"
       />
 
-      {/* Desktop Nav */}
-      <div className="relative z-10 hidden items-center gap-3 md:flex">
-        {navItems.map((item, idx) => (
-          <a
-            key={idx}
-            href={item.href}
-            className="relative px-2 py-1 text-sm"
-            onMouseEnter={() => setHovered(idx)}
-            onMouseLeave={() => setHovered(null)}
-          >
-            <AnimatePresence>
-              {hovered === idx && (
-                <motion.span
-                  layoutId="hovered-span"
-                  initial={{ opacity: 0, scale: 0.98 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.98 }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 140,
-                    damping: 20,
-                    mass: 1.2,
-                    delay: 0.04,
-                  }}
-                  className="pointer-events-none absolute inset-0 rounded-md bg-white/5 border border-white/10"
-                />
-              )}
-            </AnimatePresence>
-
-            <span className="relative z-10">{item.title}</span>
-          </a>
-        ))}
-      </div>
-
-      {/* Mobile Hamburger */}
-      <button
-        onClick={() => setMenuOpen((prev) => !prev)}
-        className="relative z-10 block md:hidden"
-      >
-        <div className="flex flex-col gap-1.5">
-          <span className="h-[2px] w-5 bg-white/80" />
-          <span className="h-[2px] w-5 bg-white/80" />
-          <span className="h-[2px] w-5 bg-white/80" />
+      {/* Desktop nav */}
+      {isDesktop && (
+        <div className="relative z-10 flex items-center gap-3">
+          {navItems.map((item, idx) => (
+            <a
+              key={idx}
+              href={item.href}
+              className="relative px-2 py-1 text-md"
+              onMouseEnter={() => setHovered(idx)}
+              onMouseLeave={() => setHovered(null)}
+            >
+              <AnimatePresence>
+                {hovered === idx && (
+                  <motion.span
+                    layoutId="hovered-span"
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.98 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 140,
+                      damping: 20,
+                      mass: 1.2,
+                      delay: 0.04,
+                    }}
+                    className="pointer-events-none absolute inset-0 rounded-md bg-white/5 border border-white/10"
+                  />
+                )}
+              </AnimatePresence>
+              <span className="relative z-10">{item.title}</span>
+            </a>
+          ))}
         </div>
-      </button>
+      )}
 
-      {/* Mobile Menu */}
+      {/* Mobile hamburger */}
+      {!isDesktop && (
+        <button
+          onClick={() => setMenuOpen((prev) => !prev)}
+          className="relative z-10 block"
+        >
+          <div className="flex flex-col gap-1.5">
+            <span className="h-[2px] w-5 bg-white/80" />
+            <span className="h-[2px] w-5 bg-white/80" />
+            <span className="h-[2px] w-5 bg-white/80" />
+          </div>
+        </button>
+      )}
+
+      {/* Mobile menu */}
       <AnimatePresence>
-        {menuOpen && (
+        {menuOpen && !isDesktop && (
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.25 }}
-            className="absolute left-0 top-full mt-2 w-full rounded-xl border border-white/5 bg-bg/80 backdrop-blur-xl p-4 md:hidden"
+            className="absolute left-0 top-full mt-2 w-full rounded-xl border border-white/5
+                       bg-bg/80 backdrop-blur-xl p-4"
           >
             <div className="flex flex-col gap-2">
               {navItems.map((item, idx) => (
