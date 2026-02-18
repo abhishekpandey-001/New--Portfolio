@@ -9,7 +9,7 @@ const Education = () => {
       transition={{ duration: 0.35, ease: "easeOut" }}
       className="mx-5 mt-10 flex flex-col sm:mx-9"
     >
-      <h1 className="text-[#e5e5e5] text-2xl font-bold tracking-tight md:text-4xl">
+      <h1 className="text-[#e5e5e5] text-2xl font-bold tracking-tight md:text-3xl">
         Education
       </h1>
 

@@ -10,7 +10,7 @@ const Contributions = () => {
             transition={{ duration: 0.4, ease: "easeOut" }}
             className="mx-5 mt-10 flex flex-col sm:mx-9"
         >
-            <h1 className="text-[#e5e5e5] text-2xl font-bold tracking-tight md:text-4xl">
+            <h1 className="text-[#e5e5e5] text-2xl font-bold tracking-tight md:text-3xl">
                 My Contributions
             </h1>
 
@@ -30,9 +30,15 @@ const Contributions = () => {
                 <GitHubCalendar
                     username="abhishekpandey-001"
                     colorScheme="dark"
-                    blockSize={12}
-                    blockMargin={4}
-                    fontSize={12}
+                    blockSize={11}
+                    blockMargin={2}
+                    fontSize={14}
+                    blockRadius={1}
+                    errorMessage="Can't acces github currently"
+                    theme={{ light: ['hsl(0, 0%, 92%)', 'firebrick'], dark: ['#333', 'rgb(214, 16, 174)'] }}
+                    style={{
+
+                    }}
                 />
             </motion.div>
         </motion.section>

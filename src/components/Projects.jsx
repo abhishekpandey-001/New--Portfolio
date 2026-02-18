@@ -13,8 +13,8 @@ const projects = [
             { name: "Tailwind", logo: "https://cdn.simpleicons.org/tailwindcss" },
             { name: "Gemini API", logo: "https://cdn.simpleicons.org/google" },
         ],
-        live: "#",
-        github: "#",
+        live: "https://forge-ui-alpha.vercel.app/",
+        github: "https://github.com/abhishekpandey-001/ForgeUI",
     },
     {
         title: "Artifacta-Landing Page",
@@ -26,8 +26,8 @@ const projects = [
             { name: "Tailwind CSS", logo: "https://cdn.simpleicons.org/tailwindcss" },
             { name: "Framer Motion", logo: "https://cdn.simpleicons.org/framer" },
         ],
-        live: "#",
-        github: "#",
+        live: "https://artifacta-frontend.vercel.app/",
+        github: "https://github.com/abhishekpandey-001/Artifacta-Frontend/tree/main",
     },
     {
         title: "Developer Portfolio",
@@ -40,22 +40,24 @@ const projects = [
             { name: "Framer Motion", logo: "https://cdn.simpleicons.org/framer" },
         ],
         live: "#",
-        github: "#",
+        github: "https://github.com/abhishekpandey-001/New--Portfolio",
     },
 ];
 
 const Projects = () => {
     return (
-        <div className="mx-5 mt-10 flex flex-col sm:mx-9">
+        <div id="projects" className="mx-5 mt-10 flex flex-col sm:mx-9">
             <motion.h1
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, ease: "easeOut" }}
-                className="text-[#e5e5e5] text-2xl font-bold tracking-tight md:text-4xl"
+                className="text-[#e5e5e5] text-2xl font-bold tracking-tight md:text-3xl"
             >
                 My Projects
             </motion.h1>
+
+            <p className="mb-1 mt-6 text-white/60">I've worked on a variety of projects, from simple websites to complex web applications. Here are a few of my favorites.</p>
 
             <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {projects.map((project, idx) => (

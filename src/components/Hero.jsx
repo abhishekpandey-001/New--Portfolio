@@ -19,14 +19,14 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="mx-5 mt-8 flex flex-col sm:mx-9">
+    <section id="about" className="mx-5 mt-8 flex flex-col sm:mx-9">
       {/* Name + Role */}
       <div className="flex flex-wrap items-center gap-2">
         <motion.h1
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, ease: "easeOut" }}
-          className="text-[#e5e5e5] text-2xl font-bold tracking-tight md:text-4xl"
+          className="text-[#e5e5e5] text-2xl font-bold tracking-tight md:text-3xl"
         >
           Abhishek Pandey
         </motion.h1>
