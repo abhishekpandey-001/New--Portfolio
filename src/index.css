@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+/* Tailwind-first setup for dark portfolio */
+html,
+body,
+#root {
+  height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-bg text-text antialiased;
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* Optional: nicer default selection color */
+::selection {
+  background: rgba(124, 58, 237, 0.4); /* accent */
+  color: white;
+}
+
+/* Remove ugly blue tap highlight on mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
