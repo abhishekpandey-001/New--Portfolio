@@ -22,6 +22,8 @@ const Skills = () => {
         Tech Stack
       </h1>
 
+      <div className="mt-4 h-px w-16 bg-gradient-to-r from-white/40 to-transparent" />
+
       <div className="mt-5 grid grid-cols-2 gap-2.5 sm:grid-cols-3 md:grid-cols-4">
         {skillsData.map((skill, idx) => (
           <motion.div

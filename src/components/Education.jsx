@@ -13,6 +13,8 @@ const Education = () => {
         Education
       </h1>
 
+      <div className="mt-4 h-px w-16 bg-gradient-to-r from-white/40 to-transparent" />
+
       <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
         {/* University Logo */}
         <div className="h-12 w-12 flex-shrink-0 overflow-hidden rounded-md">
