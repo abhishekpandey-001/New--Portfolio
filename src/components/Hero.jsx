@@ -45,12 +45,14 @@ const Hero = () => {
         </AnimatePresence>
       </div>
 
+      <div className="mt-4 h-px w-16 bg-gradient-to-r from-white/40 to-transparent" />
+
       {/* Description */}
       <motion.p
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.45, delay: 0.1, ease: "easeOut" }}
-        className="max-w-lg pt-4 text-sm text-white/60 md:text-sm"
+        className="max-w-lg mt-4 text-sm text-white/60 md:text-sm"
       >
         Frontend-focused Software Engineer skilled in building scalable and
         performance-optimized React applications. Experienced in modular

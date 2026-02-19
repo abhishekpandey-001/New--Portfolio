@@ -14,6 +14,8 @@ const Contributions = () => {
                 My Contributions
             </h1>
 
+            <div className="mt-4 h-px w-16 bg-gradient-to-r from-white/40 to-transparent" />
+
             {/* Calendar wrapper */}
             <motion.div
                 initial={{ opacity: 0, y: 6 }}
